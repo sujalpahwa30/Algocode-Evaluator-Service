@@ -20,6 +20,13 @@ app.listen(serverConfig.PORT, () => {
     company : "Google",
     position : "SDE 1",
     location : "Remote | BLR | Noida"
-  });
+  } , 2);
+
+  sampleQueueProducer('SampleJob' , {
+    name : "Sanket",
+    company : "Microsoft",
+    position : "SDE 2 L 61",
+    location : "Remote | BLR | Noida"
+  } , 1);
 });
 
