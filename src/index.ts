@@ -2,6 +2,7 @@
 import bodyParser from "body-parser";
 import express, { Express } from "express";
 
+import bullBoardAdapter from "./config/bullBoardConfig";
 import serverConfig from "./config/serverConfig";
 import sampleQueueProducer from "./producers/sampleQueueProducer";
 import apiRouter from "./routes";
@@ -15,17 +16,14 @@ app.use(bodyParser.text());
 
 app.use('/api' , apiRouter);
 
+app.use('/ui' , bullBoardAdapter.getRouter());
+
 app.listen(serverConfig.PORT, () => {
   console.log(`Server started at *:${serverConfig.PORT}`);
 
-  SampleWorker('SampleQueue');
+  console.log(`BullBoard dashboard running on : http://localhost:${serverConfig.PORT}/ui`);
 
-  sampleQueueProducer('SampleJob' , {
-    name : "Sujal",
-    company : "Google",
-    position : "SDE 1",
-    location : "Remote | BLR | Noida"
-  } , 2);
+  SampleWorker('SampleQueue');
 
   sampleQueueProducer('SampleJob' , {
     name : "Sanket",
