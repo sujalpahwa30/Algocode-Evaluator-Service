@@ -5,8 +5,8 @@ import express, { Express } from "express";
 import bullBoardAdapter from "./config/bullBoardConfig";
 import serverConfig from "./config/serverConfig";
 //import sampleQueueProducer from "./producers/sampleQueueProducer";
-import runCpp from "./containers/cppExecutor";
-import submissionQueueProducer from "./producers/submissionQueueProducer";
+// import runCpp from "./containers/cppExecutor";
+// import submissionQueueProducer from "./producers/submissionQueueProducer";
 import apiRouter from "./routes";
 import { submission_queue } from "./utils/constants";
 import SampleWorker from "./workers/SampleWorker";
@@ -30,42 +30,42 @@ app.listen(serverConfig.PORT, () => {
   SampleWorker('SampleQueue');
   SubmissionWorker(submission_queue);
 
-  const userCode = `
+  // const userCode = `
   
-  class Solution {
-  public:
-  vector<int> permute() {
-     vector<int> v;
-     v.push_back(10);
-     return v;
-     }
-     };
-     `;
+  // class Solution {
+  // public:
+  // vector<int> permute() {
+  //    vector<int> v;
+  //    v.push_back(10);
+  //    return v;
+  //    }
+  //    };
+  //    `;
 
-    const code = `
-    #include<iostream>
-    #include<vector>
-    #include<stdio.h>
-    using namespace std;
+    // const code = `
+    // #include<iostream>
+    // #include<vector>
+    // #include<stdio.h>
+    // using namespace std;
     
-    ${userCode}
+    // ${userCode}
     
-    int main() {
+    // int main() {
       
-      Solution s;
-      vector<int> result = s.permute();
-      for(int x : result) {
-        cout << x << " ";
-        }
-        cout << endl;
-        return 0;
-      }
-      `;
+    //   Solution s;
+    //   vector<int> result = s.permute();
+    //   for(int x : result) {
+    //     cout << x << " ";
+    //     }
+    //     cout << endl;
+    //     return 0;
+    //   }
+    //   `;
 
-      const inputCase = `10
-      `;
+      // const inputCase = `10
+      // `;
 
-  runCpp(code, inputCase);
+  // runCpp(code, inputCase);
 
   // sampleQueueProducer('SampleJob' , {
   //   name : "Sanket",
@@ -74,12 +74,12 @@ app.listen(serverConfig.PORT, () => {
   //   location : "Remote | BLR | Noida"
   // } , 1);
 
-  submissionQueueProducer({"1234": {
-    language: "CPP",
-    inputCase,
-    code
-  }});
+  // submissionQueueProducer({"1234": {
+  //   language: "CPP",
+  //   inputCase,
+  //   code
+  // }});
 
-  runCpp(code, inputCase);
+  // runCpp(code, inputCase);
 });
 
